@@ -30,12 +30,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  Widget buildRecipeCard(Recipe recipe) {
+    return Card(
+      child: Column(
+        children: [
+          Image(image: AssetImage(recipe.imageUrl)),
+          Text(recipe.label),
+        ],
+      ),
+    );
   }
 
   @override
@@ -47,9 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SafeArea(
         child: ListView.builder(
           itemCount: Recipe.samples.length,
-          itemBuilder: (context, index) => Text(
-            Recipe.samples[index].label,
-          ),
+          itemBuilder: (context, index) =>
+              buildRecipeCard(Recipe.samples[index]),
         ),
       ),
     );
