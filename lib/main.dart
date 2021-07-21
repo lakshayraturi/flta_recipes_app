@@ -32,11 +32,25 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   Widget buildRecipeCard(Recipe recipe) {
     return Card(
-      child: Column(
-        children: [
-          Image(image: AssetImage(recipe.imageUrl)),
-          Text(recipe.label),
-        ],
+      elevation: 2.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Image(image: AssetImage(recipe.imageUrl)),
+            SizedBox(
+              height: 14.0,
+            ),
+            Text(recipe.label,
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontFamily: "Palatino",
+                )),
+          ],
+        ),
       ),
     );
   }
