@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './recipe.dart';
+import 'recipe_detail.dart';
 
 void main() {
   runApp(RecipeApp());
@@ -63,10 +64,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SafeArea(
         child: ListView.builder(
-          itemCount: Recipe.samples.length,
-          itemBuilder: (context, index) =>
-              buildRecipeCard(Recipe.samples[index]),
-        ),
+            itemCount: Recipe.samples.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return RecipeDetail(recipe: Recipe.samples[index]);
+                      }
+                    ),
+                  );
+                },
+                child: buildRecipeCard(Recipe.samples[index]),
+              );
+            }),
       ),
     );
   }
